@@ -1,0 +1,4 @@
+# Figure out the server type.
+
+nslookup 10.51.1.253
+echo "DNS server is DHCP"

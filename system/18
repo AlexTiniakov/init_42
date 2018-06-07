@@ -1,0 +1,4 @@
+# With the previous command, authorize only IP addresses from 10.0.0.0/8 to con- nect to your system
+
+sudo iptables -A INPUT -s 10.0.0.0/8 -j ACCEPT
+sudo iptables -A OUTPUT -d 10.0.0.0/8 -j ACCEPT

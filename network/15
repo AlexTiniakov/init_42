@@ -1,0 +1,6 @@
+# What file contains the local DNS entries?
+
+echo "/etc/hosts"
+
+# /etc/hosts contains local DNS entries.
+# cat "/etc/hosts"

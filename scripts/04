@@ -1,0 +1,26 @@
+# Write a script which monitors the modifications made to the /etc/crontab file and sends an e-mail to root if the file is modified. Create a scheduled task to run this script everyday at midnight.
+
+
+echo 'TARG=/etc/crontab
+BACK=/etc/.crontab_backup
+
+if [ ! -e $BACK ]; then
+	echo "Backup does not exist"
+	sudo cp $TARG $BACK
+	exit 0
+fi
+
+MD5=`md5sum $TARG | awk '{ print $1 }'`
+MD5_BACK=`md5sum $BACK | awk '{ print $1 }'`
+
+if [ -z $MD5 ] | [ -z $MD5_BACKUP ]; then
+	echo "MD5 is empty."
+fi
+
+if [ "$MD5" != "$MD5_BACKUP" ]; then
+	echo "Crontab has been modified" | mail -s "Report" root
+fi
+
+sudo cp $TARG $BACK' >> ~/task04.sh
+
+echo '0 0 * * * root sh ~/task04.sh' | crontab
